@@ -5,9 +5,9 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "acts_as_content_node"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{Common functions for an record used as content of a website}
     gem.email = "steve@wearebeef.co.uk"
-    gem.homepage = "http://github.com/stengland/acts_as_content_node"
+    gem.homepage = "http://github.com/beef/acts_as_content_node"
     gem.authors = ["Steve England"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
