@@ -1,4 +1,4 @@
-class ActsAsContentNodeGenerator < ScaffoldGenerator
+class ContentNodeScaffoldGenerator < ScaffoldGenerator
   def manifest
     record do |m|
       # Check for class naming collisions.
@@ -17,7 +17,7 @@ class ActsAsContentNodeGenerator < ScaffoldGenerator
       m.directory(File.join('test/unit/helpers', class_path))
       m.directory(File.join('public/stylesheets', class_path))
 
-      for action in [index show]
+      for action in ['index', 'show']
         m.template(
           "view_#{action}.html.erb",
           File.join('app/views', controller_class_path, controller_file_name, "#{action}.html.erb")
