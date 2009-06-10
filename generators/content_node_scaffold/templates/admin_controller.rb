@@ -1,5 +1,5 @@
 class Admin::<%= controller_class_name %>Controller < ApplicationController
-  sortable_attributes :name, :email, :age, :group => "groups.name"
+  sortable_attributes :<%= attributes.collect{|a| a.name}.join(' ,:') %> 
 
   # GET /<%= table_name %>
   # GET /<%= table_name %>.xml
@@ -18,7 +18,7 @@ class Admin::<%= controller_class_name %>Controller < ApplicationController
     @<%= file_name %> = <%= class_name %>.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :xml => @<%= file_name %> }
       format.xml  { render :xml => @<%= file_name %> }
     end
   end
@@ -29,14 +29,9 @@ class Admin::<%= controller_class_name %>Controller < ApplicationController
     @<%= file_name %> = <%= class_name %>.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html format.html { render :action =>'show' }
       format.xml  { render :xml => @<%= file_name %> }
     end
-  end
-
-  # GET /<%= table_name %>/1/edit
-  def edit
-    @<%= file_name %> = <%= class_name %>.find(params[:id])
   end
 
   # POST /<%= table_name %>

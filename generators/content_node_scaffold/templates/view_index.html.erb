@@ -3,7 +3,7 @@
 <table>
   <tr>
 <% for attribute in attributes -%>
-    <th><%%= sortable_table_header :name => "<%= attribute.column.human_name %>",  :sort => "<%= attribute.name %>" %></th>
+    <th><%= attribute.column.human_name %></th>
 <% end -%>
   </tr>
 

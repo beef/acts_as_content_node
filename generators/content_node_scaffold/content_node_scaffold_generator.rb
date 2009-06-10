@@ -1,4 +1,13 @@
+require File.expand_path(File.dirname(__FILE__) + "/lib/insert_commands.rb")
+
 class ContentNodeScaffoldGenerator < ScaffoldGenerator
+  
+  def initialize(runtime_args, runtime_options = {})
+    super
+
+    @args = ['title:string', 'permalink:string', 'published_at:datetime', 'published_to:datetime'] + @args
+  end
+  
   def manifest
     record do |m|
       # Check for class naming collisions.
@@ -29,7 +38,7 @@ class ContentNodeScaffoldGenerator < ScaffoldGenerator
       end
 
       # Layout and stylesheet.
-      m.template('layout.html.erb', File.join('app/views/layouts', controller_class_path, "#{controller_file_name}.html.erb"))
+      m.template('layout.html.erb', File.join('app/views/layouts', controller_class_path, "application.html.erb"))
       m.template('style.css', 'public/stylesheets/scaffold.css')
 
       m.template(
@@ -43,8 +52,9 @@ class ContentNodeScaffoldGenerator < ScaffoldGenerator
       m.template('helper_test.rb',     File.join('test/unit/helpers',    controller_class_path, "#{controller_file_name}_helper_test.rb"))
 
       m.route_resources controller_file_name
+      m.route_resources_to_namespace('admin', controller_file_name)
 
-      m.dependency 'model', [name, 'title:string', 'permalink:string', 'published_at:datetime', 'published_to:datetime' ] + @args, :collision => :skip
+      m.dependency 'model', [name] + @args, :collision => :skip
     end
   end
 
