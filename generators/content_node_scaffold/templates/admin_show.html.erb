@@ -2,13 +2,21 @@
 
 <%% form_for([:admin, @<%= singular_name %>]) do |f| %>
   <%%= f.error_messages %>
+  
+  <p>
+    <%%= f.label :title %><br/>
+    <%%= f.text_field :title, :class => 'title' %>
+  </p>
 
-<% for attribute in attributes -%>
+<% for attribute in attributes.reject{ |a| ['title', 'published_at', 'published_to', 'permalink' ].include?(a.name) } -%>
   <p>
     <%%= f.label :<%= attribute.name %> %><br />
     <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
   </p>
 <% end -%>
+
+  <%%= publish_select(f) %>
+
   <p class="submission">
     <%%= f.submit @<%= singular_name %>.new_record? ? 'Create' : 'Update', :disable_with => 'Submitting...' %> or <%%= link_to 'Back', admin_<%= plural_name %>_path %>
   </p>

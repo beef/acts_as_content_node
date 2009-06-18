@@ -10,4 +10,8 @@ module ContentNodesHelper
     end
   end
   
+  def publish_select(form)
+    render :partial => '/content_nodes/publish_select', :locals => { :f => form}
+  end
+  
 end

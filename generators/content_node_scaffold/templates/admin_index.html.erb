@@ -19,6 +19,7 @@
   <tbody>
 <%% @<%= plural_name %>.each do |<%= singular_name %>| %>
     <tr id="<%= singular_name %>-<%%= <%= singular_name %>.id %>">
+      <td><%%=h <%= singular_name %>.title %></td>
       <td><%%= content_status(<%= singular_name %>) %></td>
       <td><%%= <%= singular_name %>.author %></td>
       <td><%%= <%= singular_name %>.updated_at.strftime('%d %b') %></td>
