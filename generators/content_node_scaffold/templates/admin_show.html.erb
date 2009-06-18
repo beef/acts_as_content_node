@@ -18,6 +18,8 @@
   <%%= publish_select(f) %>
 
   <p class="submission">
-    <%%= f.submit @<%= singular_name %>.new_record? ? 'Create' : 'Update', :disable_with => 'Submitting...' %> or <%%= link_to 'Back', admin_<%= plural_name %>_path %>
+    <%%= f.submit 'Publish', :name => '<%= singular_name %>[publish]' %>
+    <%%= f.submit 'Save as draft', :name => '<%= singular_name %>[hide]' %>
+    or <%%= link_to 'Back', admin_<%= plural_name %>_path %>
   </p>
 <%% end %>
