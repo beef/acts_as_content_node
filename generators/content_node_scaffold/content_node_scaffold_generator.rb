@@ -51,8 +51,8 @@ class ContentNodeScaffoldGenerator < ScaffoldGenerator
       m.template('helper.rb',          File.join('app/helpers',     controller_class_path, "#{controller_file_name}_helper.rb"))
       m.template('helper_test.rb',     File.join('test/unit/helpers',    controller_class_path, "#{controller_file_name}_helper_test.rb"))
 
-      m.route_resources controller_file_name
       m.route_resources_to_namespace('admin', controller_file_name)
+      m.route_resources controller_file_name
 
       m.dependency 'model', [name] + @args, :collision => :skip
     end

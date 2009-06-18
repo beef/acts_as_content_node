@@ -1,22 +1,44 @@
 <h1>Listing <%= plural_name %></h1>
 
-<%%= link_to 'New <%= singular_name %>', new_<%= singular_name %>_path %>
+<ul class="choices">
+  <li><%%= link_to 'New <%= singular_name %>', new_admin_<%= singular_name %>_path %></li>
+</ul>
 
 <table>
-  <tr>
-<% for attribute in attributes -%>
-    <th><%%= sortable_table_header :name => "<%= attribute.column.human_name %>",  :sort => "<%= attribute.name %>" %></th>
-<% end -%>
-  </tr>
-
+  <thead>
+    <tr>
+      <%%= sortable_table_header :name => "Title",  :sort => "title" %>
+      <th>Status</th>
+      <th>Author</th>
+      <%%= sortable_table_header :name => "Updated",  :sort => "updated_at" %>
+      <%%= sortable_table_header :name => "Published At",  :sort => "published_at" %>
+      <%%= sortable_table_header :name => "Published To",  :sort => "published_to" %>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
 <%% @<%= plural_name %>.each do |<%= singular_name %>| %>
-  <tr>
-<% for attribute in attributes -%>
-    <td><%%=h <%= singular_name %>.<%= attribute.name %> %></td>
-<% end -%>
-    <td><%%= link_to 'Show', <%= singular_name %> %></td>
-    <td><%%= link_to 'Edit', [:admin, @<%= singular_name %>] %></td>
-    <td><%%= link_to 'Destroy', [:admin, @<%= singular_name %>], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+    <tr id="<%= singular_name %>-<%%= <%= singular_name %>.id %>">
+      <td><%%= content_status(<%= singular_name %>) %></td>
+      <td><%%= <%= singular_name %>.author %></td>
+      <td><%%= <%= singular_name %>.updated_at.strftime('%d %b') %></td>
+      <td><%%= <%= singular_name %>.published_at.strftime('%d %b') unless <%= singular_name %>.published_at.nil? %></td>
+      <td><%%= <%= singular_name %>.published_to.strftime('%d %b') unless <%= singular_name %>.published_to.nil? %></td>
+      <td><%%= link_to 'Show', <%= singular_name %>_path(<%= singular_name %>.permalink), :class => 'show' %></td>
+      <td><%%= link_to 'Edit', admin_<%= singular_name %>_path(<%= singular_name %>), :class => 'edit' %></td>
+      <td><%%= link_to 'Destroy', admin_<%= singular_name %>_path(<%= singular_name %>), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></td>
+    </tr>
 <%% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <%%= sortable_table_header :name => "Title",  :sort => "title" %>
+      <th>Status</th>
+      <th>Author</th>
+      <%%= sortable_table_header :name => "Updated",  :sort => "updated_at" %>
+      <%%= sortable_table_header :name => "Published At",  :sort => "published_at" %>
+      <%%= sortable_table_header :name => "Published To",  :sort => "published_to" %>
+      <th colspan="3">Actions</th>
+    </tr>
+  </tfoot>
 </table>
