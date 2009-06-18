@@ -1,4 +1,4 @@
-module ActiveRecord
+module Beef
   module Acts
     module ContentNode
       module ClassMethods
