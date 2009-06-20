@@ -38,6 +38,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   # POST /<%= table_name %>.xml
   def create
     @<%= file_name %> = <%= class_name %>.new(params[:<%= file_name %>])
+    @<%= file_name %>.updated_by = @<%= file_name %>.created_by = current_user
 
     respond_to do |format|
       if @<%= file_name %>.save
@@ -45,7 +46,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
         format.html { redirect_to(admin_<%= table_name %>_url) }
         format.xml  { render :xml => @<%= file_name %>, :status => :created, :location => @<%= file_name %> }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "show" }
         format.xml  { render :xml => @<%= file_name %>.errors, :status => :unprocessable_entity }
       end
     end
@@ -55,6 +56,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   # PUT /<%= table_name %>/1.xml
   def update
     @<%= file_name %> = <%= class_name %>.find(params[:id])
+    @<%= file_name %>.updated_by = current_user
 
     respond_to do |format|
       if @<%= file_name %>.update_attributes(params[:<%= file_name %>])
@@ -62,7 +64,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
         format.html { redirect_to(admin_<%= table_name %>_url) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "show" }
         format.xml  { render :xml => @<%= file_name %>.errors, :status => :unprocessable_entity }
       end
     end
