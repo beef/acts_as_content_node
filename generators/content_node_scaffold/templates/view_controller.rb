@@ -20,4 +20,12 @@ class <%= controller_class_name %>Controller < ApplicationController
       format.xml  { render :xml => @<%= file_name %> }
     end
   end
+  
+  def preview
+    @page_id = '<%= table_name %>'
+    @page_class = 'show'
+    @<%= file_name %> = <%= class_name %>.new(session[:<%= file_name %>_preview])
+    session[:<%= file_name %>_preview] = nil
+    render :action => "show"
+  end
 end

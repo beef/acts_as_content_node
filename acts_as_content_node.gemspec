@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve England"]
-  s.date = %q{2009-06-22}
+  s.date = %q{2009-06-23}
   s.email = %q{steve@wearebeef.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "generators/content_node_scaffold/templates/helper.rb",
      "generators/content_node_scaffold/templates/helper_test.rb",
      "generators/content_node_scaffold/templates/layout.html.erb",
+     "generators/content_node_scaffold/templates/preview.js.rjs",
      "generators/content_node_scaffold/templates/style.css",
      "generators/content_node_scaffold/templates/view_controller.rb",
      "generators/content_node_scaffold/templates/view_index.html.erb",

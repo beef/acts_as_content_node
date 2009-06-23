@@ -1,8 +1,6 @@
 class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   sortable_attributes :<%= attributes.collect{|a| a.name}.join(', :') %> 
 
-  # GET /<%= table_name %>
-  # GET /<%= table_name %>.xml
   def index
     @<%= table_name %> = <%= class_name %>.paginate :page => params[:page], :order => sort_order
 
@@ -12,8 +10,6 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
     end
   end
 
-  # GET /<%= table_name %>/1
-  # GET /<%= table_name %>/1.xml
   def show
     @<%= file_name %> = <%= class_name %>.find(params[:id])
 
@@ -23,8 +19,6 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
     end
   end
 
-  # GET /<%= table_name %>/new
-  # GET /<%= table_name %>/new.xml
   def new
     @<%= file_name %> = <%= class_name %>.new
 
@@ -34,8 +28,6 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
     end
   end
 
-  # POST /<%= table_name %>
-  # POST /<%= table_name %>.xml
   def create
     @<%= file_name %> = <%= class_name %>.new(params[:<%= file_name %>])
     @<%= file_name %>.updated_by = @<%= file_name %>.created_by = current_user
@@ -52,8 +44,6 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
     end
   end
 
-  # PUT /<%= table_name %>/1
-  # PUT /<%= table_name %>/1.xml
   def update
     @<%= file_name %> = <%= class_name %>.find(params[:id])
     @<%= file_name %>.updated_by = current_user
@@ -70,8 +60,6 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
     end
   end
 
-  # DELETE /<%= table_name %>/1
-  # DELETE /<%= table_name %>/1.xml
   def destroy
     @<%= file_name %> = <%= class_name %>.find(params[:id])
     @<%= file_name %>.destroy
@@ -81,5 +69,9 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
       format.html { redirect_to(admin_<%= table_name %>_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def preview    
+    session[:<%= file_name %>_preview] = params[:<%= file_name %>]
   end
 end

@@ -36,6 +36,7 @@ class ContentNodeScaffoldGenerator < ScaffoldGenerator
           File.join('app/views/admin', controller_class_path, controller_file_name, "#{action}.html.erb")
         )
       end
+      m.template('preview.js.rjs', File.join('app/views/admin', controller_class_path, controller_file_name, 'preview.js.rjs'))
 
       # Layout and stylesheet.
       m.template('layout.html.erb', File.join('app/views/layouts', controller_class_path, "application.html.erb"))
@@ -51,10 +52,12 @@ class ContentNodeScaffoldGenerator < ScaffoldGenerator
       m.template('helper.rb',          File.join('app/helpers',     controller_class_path, "#{controller_file_name}_helper.rb"))
       m.template('helper_test.rb',     File.join('test/unit/helpers',    controller_class_path, "#{controller_file_name}_helper_test.rb"))
 
-      m.route_resources_to_namespace('admin', controller_file_name)
-      m.route_resources controller_file_name
+      m.route_resources ":#{controller_file_name}, :collection => { :preview => :get }"
+      m.route_resources_to_namespace('admin', "#{controller_file_name}, :collection => { :preview => :post }, :member => { :preview => :post }")
 
-      m.dependency 'model', [name] + @args, :collision => :skip
+      m.dependency 'model', [name, '--skip-fixture'] + @args, :collision => :skip
+      
+      m.insert_into "app/models/#{singular_name}.rb", 'acts_as_content_node'
     end
   end
 

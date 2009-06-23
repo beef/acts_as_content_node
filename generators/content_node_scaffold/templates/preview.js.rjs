@@ -1,0 +1,1 @@
+page << "myLightWindow.activateWindow({href: '#{preview_<%= table_name %>_path}', title: 'This is only a preview'});" 
