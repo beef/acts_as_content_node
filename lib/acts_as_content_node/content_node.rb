@@ -3,7 +3,6 @@ module Beef
     module ContentNode
       module ClassMethods
         def acts_as_content_node
-          send :include, InstanceMethods
 
           belongs_to :updated_by, :class_name => 'User'
           belongs_to :created_by, :class_name => 'User'
@@ -28,6 +27,8 @@ module Beef
             content_node
           end
           acts_as_publishable
+
+          send :include, InstanceMethods
         end
       end
 
@@ -41,11 +42,11 @@ module Beef
         end
       
         def editor
-          updated_by.nil? ? 'Anon' : updated_by.name
+          updated_by.nil? ? 'Anon' : updated_by.read_attribute(:name)
         end
       
         def author
-          created_by.nil? ? 'Anon' : created_by.name
+          created_by.nil? ? 'Anon' : created_by.read_attribute(:name)
         end
       
         def short_desc
