@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_content_node}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve England"]
@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.3}
-  s.summary = %q{Common functions for an record used as content of a website}
+  s.summary = %q{Common functions for an record used as content of a website. Generator for cms and front end}
   s.test_files = [
     "test/acts_as_content_node_test.rb",
      "test/schema.rb",
