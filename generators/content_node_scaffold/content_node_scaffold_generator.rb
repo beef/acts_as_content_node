@@ -53,7 +53,7 @@ class ContentNodeScaffoldGenerator < ScaffoldGenerator
       m.template('helper_test.rb',     File.join('test/unit/helpers',    controller_class_path, "#{controller_file_name}_helper_test.rb"))
 
       m.route_resources ":#{controller_file_name}, :collection => { :preview => :get }"
-      m.route_resources_to_namespace('admin', "#{controller_file_name}, :collection => { :preview => :post }, :member => { :preview => :post }")
+      m.route_resources_to_namespace('admin', "#{controller_file_name}, :collection => { :preview => :post }, :member => { :preview => :put }")
 
       m.dependency 'model', [name, '--skip-fixture'] + @args, :collision => :skip
       
