@@ -9,7 +9,7 @@ module Beef
           
           named_scope :authored_by, lambda { |user|
             return {} if user.nil?
-            user = User.find(user) unless user.is_a? User
+            user = User.find(user) unless user.is_a? ::User
             { :conditions => { :created_by_id => user.id }  }
           }
 
