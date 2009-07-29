@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve England"]
-  s.date = %q{2009-06-25}
+  s.date = %q{2009-07-29}
   s.email = %q{steve@wearebeef.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -39,7 +39,6 @@ Gem::Specification.new do |s|
      "init.rb",
      "lib/acts_as_content_node.rb",
      "lib/acts_as_content_node/content_node.rb",
-     "lib/acts_as_content_node/permalinks.rb",
      "lib/acts_as_content_node/publishable.rb",
      "rails/init.rb",
      "tasks/acts_as_content_node_tasks.rake",

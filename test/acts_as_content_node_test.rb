@@ -12,6 +12,18 @@ class ContentNodeTest < Test::Unit::TestCase
     end
   
     should_validate_uniqueness_of :title, :message => 'has been used before'
+    
+    should "be found by user" do
+      assert_equal [@content_node], ContentNode.authored_by(@content_node.created_by)
+    end
+    
+    should "be found by user id" do
+      assert_equal [@content_node], ContentNode.authored_by(@content_node.created_by.id)
+    end
+
+    should "be found by all if user nil" do
+      assert !ContentNode.authored_by(nil).empty?
+    end
   
   end
   
