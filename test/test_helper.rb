@@ -15,6 +15,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 RAILS_DEFAULT_LOGGER = Logger.new(File.join(File.dirname(__FILE__), "debug.log"))
+ActiveRecord::Base.logger = RAILS_DEFAULT_LOGGER
 
 require "acts_as_content_node/content_node"
 require "acts_as_content_node/publishable"

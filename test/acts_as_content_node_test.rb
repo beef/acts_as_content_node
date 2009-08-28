@@ -82,8 +82,12 @@ class ContentNodeTest < Test::Unit::TestCase
       @content_node = Factory(:content_node, :publish => true)
     end
   
-    should "be based published" do
+    should "be published" do
       assert @content_node.published?
+    end
+    
+    should "be found in published scope" do
+      assert !ContentNode.published.find(@content_node.id).nil?
     end
     
     should "not be published if updated and hide set" do

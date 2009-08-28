@@ -5,7 +5,7 @@ module Beef
         def acts_as_publishable
           send :include, InstanceMethods
 
-          named_scope :published, lambda { { :conditions => ['published_at != \'\' AND published_at < ? AND (published_to > ? OR published_to is null)', Time.zone.now, Time.zone.now] } }
+          named_scope :published, lambda { { :conditions => ["(published_at IS NOT NULL AND published_at != '') AND published_at < ? AND (published_to > ? OR published_to IS NULL OR published_to = '')", Time.now, Time.now] } }
 
           before_save :set_published
 
