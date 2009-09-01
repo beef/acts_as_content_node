@@ -2,13 +2,13 @@
   <legend>Publishing Options</legend>
   <p>
     <label for="article_published_at">Publish at</label><br/>
-    <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_at(this.checked)', :id => 'live' %>
+    <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_at(this.checked)', :id => 'live-from' %>
     <span id="published_at"><%= f.datetime_select 'published_at', :disabled => params[:live] ? nil : 'disabled'  %></span>
   </p>
 
   <p>
     <label for="article_published_to">Publish till</label><br/>  
-    <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_to(this.checked)', :id => 'live' %>
+    <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_to(this.checked)', :id => 'live-to' %>
     <span id="published_to"><%= f.datetime_select 'published_to', :disabled => params[:live] ? nil : 'disabled'  %></span>
   </p>
 </fieldset>
