@@ -10,6 +10,8 @@ class ContentNodeTest < Test::Unit::TestCase
     setup do
       @content_node = Factory(:content_node)
     end
+    
+    subject { @content_node }
   
     should_validate_uniqueness_of :title, :message => 'has been used before'
     
@@ -53,6 +55,7 @@ class ContentNodeTest < Test::Unit::TestCase
       @permalink = 'something-else'
       @content_node = Factory(:content_node, :permalink => @permalink)
     end
+    subject { @content_node }
   
     should_validate_uniqueness_of :permalink, :message => 'has been used before'
   
