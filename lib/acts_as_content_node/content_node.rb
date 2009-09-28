@@ -13,11 +13,10 @@ module Beef
             { :conditions => { :created_by_id => user.id }  }
           }
 
-          before_save :set_url
+          before_validation :set_url
 
           validates_presence_of :title
-          validates_uniqueness_of :title, :message => 'has been used before'
-          validates_uniqueness_of :permalink, :message => 'has been used before', :if => :permalink_written
+          validates_uniqueness_of :permalink, :message => 'has been used before', :if => (:permalink_written && :publish)
           
           attr_reader :permalink_written
 
