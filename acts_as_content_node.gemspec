@@ -9,7 +9,8 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve England"]
-  s.date = %q{2009-09-28}
+  s.date = %q{2009-10-08}
+  s.description = %q{TODO: longer description of your gem}
   s.email = %q{steve@wearebeef.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -57,8 +58,8 @@ Gem::Specification.new do |s|
   s.summary = %q{Common functions for a record used as content of a website. Generator for cms and front end}
   s.test_files = [
     "test/acts_as_content_node_test.rb",
-     "test/test_helper.rb",
-     "test/schema.rb"
+     "test/schema.rb",
+     "test/test_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
