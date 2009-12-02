@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_content_node}
-  s.version = "0.1.8"
+  s.version = "0.1.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steve England"]
-  s.date = %q{2009-10-30}
+  s.date = %q{2009-12-02}
   s.description = %q{Common functions for a record used as content of a website. Generator for cms and front end.}
   s.email = %q{steve@wearebeef.co.uk}
   s.extra_rdoc_files = [
