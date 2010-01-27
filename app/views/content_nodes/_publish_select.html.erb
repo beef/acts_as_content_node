@@ -2,13 +2,15 @@
   <legend>Publishing Options</legend>
   <p>
     <%= f.label :published_at, "Publish at" %><br/>
-    <%= check_box_tag 'published_at', true, params[:published_at], :onclick => 'toggle_published_at(this.checked)', :id => 'live-from' %>
-    <span id="published_at"><%= f.datetime_select :published_at, :disabled => params[:published_at] ? nil : 'disabled'  %></span>
+    <%= check_box_tag 'published_at', true, f.object.published?, :onclick => 'toggle_published_at(this.checked)', :id => 'live-from' %>
+    <%= f.hidden_field :published_at, :value => '' %>
+    <span id="published_at"><%= f.datetime_select :published_at, :disabled => f.object.published? ? nil : 'disabled'  %></span>
   </p>
 
   <p>
-    <%= f.label :published_to, "Publish till" %><br/>  
-    <%= check_box_tag 'published_to', true, params[:published_to], :onclick => 'toggle_published_to(this.checked)', :id => 'live-to' %>
-    <span id="published_to"><%= f.datetime_select :published_to, :disabled => params[:published_to] ? nil : 'disabled'  %></span>
+    <%= f.label :published_to, "Publish till" %><br/>
+    <%= check_box_tag 'published_to', true, !f.object.published_to.blank?, :onclick => 'toggle_published_to(this.checked)', :id => 'live-to' %>
+    <%= f.hidden_field :published_to, :value => '' %>
+    <span id="published_to"><%= f.datetime_select :published_to, :disabled => f.object.published_to.blank? ? 'disabled' : nil  %></span>
   </p>
 </fieldset>
