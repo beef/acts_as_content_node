@@ -18,14 +18,15 @@ module Beef
 
         def published?
           return false if published_at.nil?
-          @published ||= published_at < Time.zone.now
+          RAILS_DEFAULT_LOGGER.debug "#{published_at} #{published_to}"
+          @published ||= (published_at <= Time.zone.now && (published_to.nil? || published_to > Time.zone.now))
         end
 
       private
 
         def set_published
           write_attribute :published_at, Time.zone.now if @publish and published_at.nil?
-          if @hide    
+          if @hide
             write_attribute :published_at, nil 
             write_attribute :published_to, nil 
           end
