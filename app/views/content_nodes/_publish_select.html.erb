@@ -1,14 +1,14 @@
 <fieldset>
   <legend>Publishing Options</legend>
   <p>
-    <%= f.label :published_at, "Publish at" %><br/>
+    <%= f.label :published_at, "Publish from" %><br/>
     <%= check_box_tag 'published_at', true, f.object.published?, :onclick => 'toggle_published_at(this.checked)', :id => 'live-from' %>
     <%= f.hidden_field :published_at, :value => '' %>
     <span id="published_at"><%= f.datetime_select :published_at, :disabled => f.object.published? ? nil : 'disabled'  %></span>
   </p>
 
   <p>
-    <%= f.label :published_to, "Publish till" %><br/>
+    <%= f.label :published_to, "Publish until" %><br/>
     <%= check_box_tag 'published_to', true, !f.object.published_to.blank?, :onclick => 'toggle_published_to(this.checked)', :id => 'live-to' %>
     <%= f.hidden_field :published_to, :value => '' %>
     <span id="published_to"><%= f.datetime_select :published_to, :disabled => f.object.published_to.blank? ? 'disabled' : nil  %></span>
