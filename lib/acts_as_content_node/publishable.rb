@@ -5,7 +5,7 @@ module Beef
         def acts_as_publishable
           send :include, InstanceMethods
 
-          named_scope :published, lambda { { :conditions => ["(published_at IS NOT NULL AND published_at != '') AND published_at <= ? AND (published_to > ? OR published_to IS NULL OR published_to = '')", Time.now, Time.now] } }
+          named_scope :published, lambda { { :conditions => ["(published_at IS NOT NULL AND published_at != '') AND published_at <= ? AND (published_to > ? OR published_to IS NULL OR published_to = '')", Time.zone.now, Time.zone.now] } }
           named_scope :draft, :conditions => { :published_at => nil }
 
           before_save :set_published
@@ -18,7 +18,6 @@ module Beef
 
         def published?
           return false if published_at.nil?
-          RAILS_DEFAULT_LOGGER.debug "#{published_at} #{published_to}"
           @published ||= (published_at <= Time.zone.now && (published_to.nil? || published_to > Time.zone.now))
         end
 
@@ -27,8 +26,8 @@ module Beef
         def set_published
           write_attribute :published_at, Time.zone.now if @publish and published_at.nil?
           if @hide
-            write_attribute :published_at, nil 
-            write_attribute :published_to, nil 
+            write_attribute :published_at, nil
+            write_attribute :published_to, nil
           end
         end
       end
